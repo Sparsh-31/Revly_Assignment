@@ -37,38 +37,32 @@ public class DoubtRequestController {
     @PostMapping("/create")
     public ResponseEntity<String> createDoubtRequest(@RequestBody DoubtRequestCreateRequest request) {
         try {
-            // Call the service to create a doubt request
-            User user = request.getUser(); // You need to set the user in the request
+            // Use doubtRequestService to get the user
+            User user = doubtRequestService.getUserById(request.getUserId());
             String query = request.getQuery();
-
+    
             String response = doubtRequestService.createDoubtRequest(user, query);
-
+    
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (DoubtRequestException e) {
             // Handle exception appropriately
             return new ResponseEntity<>("Failed to create doubt request.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    
     }
 
     @GetMapping("/history/{userId}")
     public ResponseEntity<List<DoubtRequest>> getDoubtHistory(@PathVariable Long userId) {
         try {
-            // Call the service to get doubt history
-            User user;
-            try {
-                user = userService.getByUserId(userId);
-            } catch (UserException e) {
-                // Handle the exception appropriately, e.g., log it
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-
-            List<DoubtRequest> doubtHistory = doubtRequestService.getDoubtHistory(user);
-
+            // Use doubtRequestService to get doubt history
+            List<DoubtRequest> doubtHistory = doubtRequestService.getDoubtHistory(userId);
+    
             return new ResponseEntity<>(doubtHistory, HttpStatus.OK);
         } catch (DoubtRequestException e) {
             // Handle the exception appropriately, e.g., log it
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        
     }
 
 

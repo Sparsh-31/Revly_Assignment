@@ -1,6 +1,7 @@
 package com.revly.ServiceImplementation;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,11 +44,12 @@ public class DoubtRequestServiceImpl implements DoubtRequestService {
 	@Override
 	public List<DoubtRequest> getDoubtHistory(User user) throws DoubtRequestException {
 		// TODO Auto-generated method stub
-//		List<DoubtRequest> doubtHistory = doubtRequestRepository.findByUserIdOrderByTimestampDesc(user.getId());
-		
-		
-		
-		return null;
+
+		List<Long> userIdList = Collections.singletonList(user.getId());
+	    List<DoubtRequest> doubtList = doubtRequestRepository.findAllById(userIdList);
+
+	    if(doubtList.size() != 0) return doubtList;
+	    return Collections.emptyList();
 	}
 
 	
