@@ -35,7 +35,7 @@
 ### Installation
 1. Clone the repository.
    ```bash
-   git clone [https://github.com/Sparsh-31/Revly_Assignment.git](https://github.com/Sparsh-31/Revly_Assignment.git)
+   git clone https://github.com/Sparsh-31/Revly_Assignment.git
    cd Revly_Assignment
    ```
 
