@@ -50,7 +50,6 @@
 
 ### Usage
 - Access the application at [http://localhost:8080](http://localhost:8080).
-- [Any additional usage instructions]
 
 ## Technologies Used
 - [Java](https://www.java.com/)
